@@ -5,7 +5,7 @@ A zero-install, read-only folder indexer for macOS, built for video workflows. D
 - **Exact duplicates** — clips that were copied over twice, even if they were renamed, found by full SHA-256 checksum.
 - **Missing clips** — numbered sequences with gaps. If a folder has `A001_C001`, `C002`, and `C004`, it tells you `A001_C003.MP4` is missing.
 
-Everything runs locally. Nothing is uploaded, no network connection is used, and the scanned folder is never modified.
+![Report](screenshot.png)
 
 ## Usage
 
@@ -44,15 +44,14 @@ The report is a single self-contained HTML file — it works offline and can be 
 
 **Dates.** Creation dates come from the filesystem's true birth time (`st_birthtime`). On the rare volume that doesn't store one, the report marks those files with an asterisk.
 
-## Read-only guarantee
+## Read-only 
 
 Against the folder you scan, the tool only lists directories, reads file metadata, and opens files for reading. It contains no code path that writes, renames, moves, or deletes anything inside the scanned folder. Its only output is the HTML report written to your Desktop. (As with any program that reads files, the OS may update last-*accessed* timestamps; created/modified dates are never touched.)
 
 ## Requirements
 
-- macOS (tested on modern versions; Apple Silicon and Intel)
-- Python 3 via Apple's free Command Line Tools — if missing, the tool prompts the one-time install automatically
-- No third-party dependencies, no package managers, no admin rights
+- macOS 
+- Python 3 
 
 ## Notes and limitations
 
@@ -62,12 +61,7 @@ Against the folder you scan, the tool only lists directories, reads file metadat
 - Sizes use decimal units (1 GB = 1,000,000,000 bytes) to match Finder; exact byte counts are always shown alongside.
 - The report embeds the full index, so a scan of hundreds of thousands of files produces a large HTML file; the table renders in chunks to stay responsive.
 
-## Publishing checklist
-
-- Repo name suggestion: `footage-indexer`
-- Add a screenshot of the report (drag a PNG into the repo and reference it at the top: `![Report](screenshot.png)`)
-- Add a `LICENSE` file (MIT is a common choice for tools like this)
 
 ## License
 
-MIT (or your preferred license — see `LICENSE`).
+MIT.
